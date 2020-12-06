@@ -1,15 +1,12 @@
-import java.util.Scanner;
+import org.codehaus.jackson.map.ObjectMapper;
+import java.io.FileReader;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        System.out.print("Введите строку: ");
-        String line = in.nextLine();
-        System.out.print("Введите кол-во символов, которые нужно пропустить: ");
-        int skip = in.nextInt();
+    public static void main(String[] args) throws Exception {
+        ObjectMapper mapper = new ObjectMapper();
+        FileReader file = new FileReader("src/main/resources/Integer.json");
+        Automat automat = mapper.readValue(file, Automat.class);
 
-        Automat automat = new Automat();
-
-        automat.isDigit(line, skip).Print();
+        automat.max("-213eq", 0).Print();
     }
 }
